@@ -1,0 +1,34 @@
+body {
+	/* background: #3A3335; */
+	background: #253237;
+	display: flex;
+	justify-content: center;
+}
+
+.wrapper {
+	min-width: 800px;
+	width: 100%;
+	margin: 40px;
+}
+
+.container {
+	/* background: #C6D8D3; */
+	background: #F2F4F3;
+}
+
+.container, .navbar {
+	padding: 20px;
+}
+
+.navbar {
+	align-items: center;
+	background-color: #370617;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+}
+
+.navbar a {
+	color: white;
+	text-decoration: none;
+}

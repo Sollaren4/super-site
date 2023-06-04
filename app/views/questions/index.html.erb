@@ -1,0 +1,18 @@
+<div class="container">
+	<p class="mt">
+		<%= link_to "Создать новый вопрос", new_question_path, class: 'button button-main' %>
+	</p>
+</div>
+
+<div class="container mt-sm">
+	<h2 class="title-lg">
+		<%= @questions.count %>
+		<%= inclination(@questions.count, 'вопрос', 'воспроса', 'вопросов') %>
+	</h2>
+
+	<% @questions.each do |question| %>
+		<div class="mt-sm container">
+			<%= render question %>
+		</div>
+	<% end %>
+</div>

@@ -1,0 +1,36 @@
+body {
+	color: #3A3335;
+	font-family: sans-serif;
+}
+
+a, button{
+	color: #D81E5B;
+}
+
+.title-lg {
+	font-size: 175%;
+}
+
+.title-md, .title {
+	font-size: 150%;
+}
+
+.title-sm {
+	font-size: 125%;
+}
+
+.text-sm {
+	font-size: 80%;
+}
+
+.text-grey {
+	color: #a0a0a0;
+}
+
+.text-red {
+	color: #C3423F;
+}
+
+.text-bold {
+	font-weight: bold;
+}
