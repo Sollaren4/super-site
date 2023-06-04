@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[update destroy edit]
+  before_action :set_user, only: %i[update destroy edit, show]
 
   def new
     @user = User.new
@@ -36,6 +36,9 @@ class UsersController < ApplicationController
     session.delete(:user_id)
 
     redirect_to root_path, notice: 'Пользователь удален'
+  end
+
+  def show
   end
 
   private
