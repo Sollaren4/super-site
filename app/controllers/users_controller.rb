@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[update destroy edit]
+
   def new
     @user = User.new
   end
@@ -16,13 +18,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user= User.find(params[:id])
   end
 
-
   def update
-    @user= User.find(params[:id])
-
     if @user.update(user_params)
       redirect_to root_path, notice: 'Данные пользователя обновлены'
     else
@@ -33,7 +31,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user= User.find(params[:id])
     @user.destroy
 
     session.delete(:user_id)
@@ -46,5 +43,9 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
       :name, :nickname, :email, :password, :password_confirmation)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
