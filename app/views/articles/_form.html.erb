@@ -1,21 +1,20 @@
-<%= form_with model: article do |form| %>
+<%= form_with model: [@user, @user.articles.build] do |form| %>
+<%# 									article   [@user, @user.articles.build]%>
   <div>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
-    <% article.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%# <% article.errors.full_messages_for(:title).each do |message|  %>
+      <%# <div><%= message</div> %>
+    <%# <% end %>
   </div>
 
   <div>
     <%= form.label :body %><br>
     <%= form.text_area :body %><br>
-    <% article.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%# <% article.errors.full_messages_for(:body).each do |message| %>
+      <%# <div><%= message</div> %>
+    <%# <% end %> 
   </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+	<p class="mt"><%= form.submit %></p>
 <% end %>

@@ -1,6 +1,20 @@
 <div class="container">
-	<h2>Привет, <%= @user.nickname %> </h2>
+	<p class="mt">
+		<%= link_to "Создать новый пост", new_user_article_path(@user), class: 'button button-main' %>
+		<%# 			new_article_path												new_user_article_path(@user) %>
+	</p>
 </div>
 
-<div class="container">
+<div class="container mt">
+	<p>
+		<h1 class="mb">Все посты <%= @user.nickname %> </h1>
+	</p>
+
+	<ul>
+		<% @user.articles.each do |article| %>
+			<li>
+				<%= link_to article.title, user_article_path(@user, article) %>
+			</li>
+		<% end %>
+	</ul>
 </div>

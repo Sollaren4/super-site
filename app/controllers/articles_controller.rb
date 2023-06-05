@@ -1,5 +1,3 @@
-
-
 class ArticlesController < ApplicationController
   def index
     @articles = Article.all
@@ -7,23 +5,32 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @user = User.find(params[:user_id])
   end
 
   def new
+    @user = User.find(params[:user_id])
     @article = Article.new
   end
 
   def create
-    @article = Article.new(article_params)
+    # @article = Article.find(params[:article_id])
+    # @comment = @article.comments.create(comment_params)
+    # redirect_to article_path(@article)
+
+    @user = User.find(params[:user_id])
+    @article = @user.articles.create(article_params)
+    @article.user_id = current_user.id
 
     if @article.save
-      redirect_to @article
+      redirect_to user_article_path(@user, @article), notice: 'Новый пост создан!'
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, notice: 'ошибка'
     end
   end
 
   def edit
+    @user = User.find(params[:user_id])
     @article = Article.find(params[:id])
   end
 
@@ -39,14 +46,14 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    @article.destroy
+		@article.destroy
 
-    redirect_to root_path, status: :see_other
+		redirect_to questions_path, notice: 'Вопрос удален!'
   end
 
   private
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :user_id)
     end
 end
 

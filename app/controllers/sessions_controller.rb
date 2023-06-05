@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if user.present?
       session[:user_id] = user.id
 
-      redirect_to root_path, notice: 'Вы успешно вошли!'
+      redirect_to user_path(user), notice: 'Вы успешно вошли!'
     else
       # now, чтобы alert выскакивал только на этой превой стр
       # иначе при переходе на другую тоже выскакивает

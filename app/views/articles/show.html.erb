@@ -1,24 +1,40 @@
-<div class="container">
+<div class="container mt">
 	<h1><%= @article.title %></h1>
 
-	<p><%= @article.body %></p>
+	<p class="mt"><%= @article.body %></p>
 
-	<ul>
-		<li><%= link_to "Edit", edit_article_path(@article) %></li>
-		<li><%= link_to "Destroy", article_path(@article), data: {
-											turbo_method: :delete,
-                      turbo_confirm: "Are you sure?"
-											} %></li>
-	</ul>
+	<% if current_user.id == @user.id %>
+		<ul class="mt-lg">
+			<li><%= link_to "Edit", edit_user_article_path %></li>
+			<li><%= link_to "Destroy", article_path(@article), data: {
+												turbo_method: :delete,
+												turbo_confirm: "Are you sure?"
+												} %></li>
+		</ul>
+	<% end %>
 </div>
 
-<div class="container">
-	<h2>Comments</h2>
-	<%= render @article.comments %>
+<div class="container mt-sm"><h2 class="title-lg">Comments</h2></div>
+	<% @article.comments.each do |comment| %>
+		<div class="container">
+			<%= render comment %>
+
+			<div>
+				<% if current_user.id == @user.id %>
+					<%= button_to fa_icon('trash-o'), article_comment_path(comment), method: :delete, title: 'Удалить вопрос' %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="container mt-sm">
+		<h2>Add a comment:</h2>
+
+		<%= render 'comments/form' %>
+	</div>
+
+<div class="container mt">
+	<%= link_to 'Добавить комментарий', new_user_article_comment_path(@user, @article), class: 'button button-main' %>
 </div>
 
-<div class="container">
-	<h2>Add a comment:</h2>
-
-	<%= render 'comments/form' %>
 </div>
